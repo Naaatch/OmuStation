@@ -1,0 +1,50 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  parent: [BaseItem, BaseMagicalContraband]
+  id: VoodooDoll
+  name: wicker doll
+  description: You feel like it's watching you.
+  components:
+  - type: Sprite
+    sprite: _Omu/Objects/Misc/voodoo_doll.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: _Omu/Objects/Misc/voodoo_doll.rsi
+  - type: VoodooDoll
+    cutDamage:
+      types:
+        Slash: 5
+    throwDamage:
+      types:
+        Blunt: 10
+    destroyedDamage:
+      groups:
+        Brute: 50
+  - type: UseDelay
+    delays:
+      voodoo:
+        length: 45
+  - type: UserInterface
+    interfaces:
+      enum.VoodooDollUiKey.Key:
+        type: VoodooDollBoundUserInterface
+
+- type: entity
+  parent: VoodooDoll
+  id: VoodooDollAdmin
+  name: evil wicker doll
+  description: When you really want someone to suffer.
+  suffix: Admeme
+  components:
+  - type: VoodooDoll
+    bindDelay: 0
+    remoteBindDelay: 0
+    unbindDelay: 0
+    rebindCooldownStatusEffect: null
+    locationHints: false
+  - type: UseDelay
+    delays:
+      voodoo:
+        length: 0
