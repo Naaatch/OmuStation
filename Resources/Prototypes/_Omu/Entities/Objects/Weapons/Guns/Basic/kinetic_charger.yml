@@ -1,0 +1,54 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  name: proto-kinetic charger
+  id: WeaponProtoKineticCharger
+  parent: [ WeaponProtoKineticAcceleratorBase, BaseCargoContraband ]
+  description: Charges up to fire
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    layers:
+    - state: icon
+    - state: icon
+      visible: false
+      shader: unshaded
+      map: [ "charge" ]
+    - state: animation-icon
+      visible: false
+      map: [ "empty-icon" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.AmmoVisuals.HasAmmo:
+        empty-icon:
+          True: { visible: False }
+          False: { visible: True }
+      enum.ChargedShotVisuals.Level:
+        charge:
+          0: { visible: False }
+          1: { visible: True, color: "#66e0ff80" }
+          2: { visible: True, color: "#66e0ffff" }
+  - type: BasicEntityAmmoProvider
+    proto: BulletKineticPlink
+  - type: ChargedShot
+    chargeSound:
+      path: /Audio/Effects/Arcade/player_charge.ogg
+      params:
+        pitch: 0.7
+    levels:
+    - delay: 1
+      projectile: BulletKineticCharged
+      reticle:
+        sprite: /Textures/Objects/Weapons/Guns/Projectiles/magic.rsi
+        state: magicm_cyan
+      sound:
+        path: /Audio/Effects/Arcade/player_charge.ogg
+    - delay: 2
+      projectile: BulletKineticFullCharge
+      reticle:
+        sprite: /Textures/Objects/Weapons/Guns/Projectiles/magic.rsi
+        state: bluespace
+      sound:
+        path: /Audio/Effects/Arcade/player_charge.ogg
+        params:
+          pitch: 1.4

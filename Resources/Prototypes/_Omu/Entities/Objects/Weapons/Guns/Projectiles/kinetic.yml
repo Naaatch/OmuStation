@@ -1,0 +1,64 @@
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+- type: entity
+  id: BulletKineticPlink
+  name: kinetic plink
+  parent: BulletKinetic
+  categories: [ HideSpawnMenu ]
+  description: A tiny kinetic pellet.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: magicm_cyan
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 4
+        Structural: 6
+
+- type: entity
+  id: BulletKineticCharged
+  name: charged kinetic bolt
+  parent: BulletKinetic
+  categories: [ HideSpawnMenu ]
+  description: A slighty bigger shot.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    scale: 1.75, 1.75
+    layers:
+    - state: magicm_cyan
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 15
+        Structural: 22
+  - type: TimedDespawn
+    lifetime: 0.18
+
+- type: entity
+  id: BulletKineticFullCharge
+  name: kinetic blast
+  parent: BulletKinetic
+  categories: [ HideSpawnMenu ]
+  description: A fully charged blast.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: bluespace
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 30
+        Structural: 40
+  - type: TimedDespawn
+    lifetime: 0.22
+  - type: PointLight
+    radius: 1.5
+    color: "#66e0ff"
+    energy: 1
